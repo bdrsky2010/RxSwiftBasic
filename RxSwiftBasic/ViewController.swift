@@ -57,13 +57,13 @@ final class ViewController: UIViewController {
             }
             .disposed(by: disposeBag)
             
-        tableView.rx.modelSelected(CellItem.self)
-            .subscribe(with: self) { owner, item in
-                owner.navigationController?.pushViewController(item.viewController, animated: true)
-            } onDisposed: { owner in
-                print("disposed")
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(CellItem.self))
+            .subscribe(with: self) { owner, tuple in
+                owner.tableView.reloadRows(at: [tuple.0], with: .automatic)
+                owner.navigationController?.pushViewController(tuple.1.viewController, animated: true)
             }
             .disposed(by: disposeBag)
+
     }
 }
 
