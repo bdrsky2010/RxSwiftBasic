@@ -7,16 +7,59 @@
 
 import UIKit
 
+import Alamofire
 import RxCocoa
 import RxSwift
 import SnapKit
+import Toast
 
 final class SimpleTableViewController: UIViewController {
+    private let tableView = UITableView(frame: .zero, style: .plain)
+    
+    private let disposeBag = DisposeBag()
+    
+    private var list = BehaviorRelay<[Market]>(value: [])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
     }
     
     private func configureView() {
         view.backgroundColor = .white
+        navigationItem.title = CellItem.tableView.title
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SystemCell")
+        
+        list
+            .bind(to: tableView.rx.items) { (tableView, row, element) in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "SystemCell") else { return UITableViewCell() }
+                cell.textLabel?.text = element.title
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(Market.self)
+            .subscribe(with: self) { owner, market in
+                owner.view.makeToast(market.market, duration: 1.5)
+            }
+            .disposed(by: disposeBag)
+        
+        let url = "https://api.upbit.com/v1/market/all"
+        
+        AF.request(url).responseDecodable(of: [Market].self) { [weak self] response in
+            guard let self else { return }
+            switch response.result {
+            case .success(let success):
+                list.accept(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
 }
