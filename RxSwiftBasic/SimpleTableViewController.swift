@@ -18,7 +18,7 @@ final class SimpleTableViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private var list = BehaviorRelay<[Market]>(value: [])
+    private let list = BehaviorSubject(value: [Market]())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ final class SimpleTableViewController: UIViewController {
             guard let self else { return }
             switch response.result {
             case .success(let success):
-                list.accept(success)
+                list.onNext(success)
             case .failure(let failure):
                 print(failure)
             }
