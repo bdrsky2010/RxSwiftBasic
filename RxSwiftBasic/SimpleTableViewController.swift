@@ -43,10 +43,10 @@ final class SimpleTableViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        tableView.rx
-            .modelSelected(Market.self)
-            .subscribe(with: self) { owner, market in
-                owner.view.makeToast(market.market, duration: 1.5)
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Market.self))
+            .subscribe(with: self) { owner, tuple in
+                owner.tableView.reloadRows(at: [tuple.0], with: .automatic)
+                owner.view.makeToast(tuple.1.market, duration: 1.5)
             }
             .disposed(by: disposeBag)
         
