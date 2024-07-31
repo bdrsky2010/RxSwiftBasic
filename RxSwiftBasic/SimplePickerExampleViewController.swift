@@ -13,7 +13,7 @@ import SnapKit
 import Toast
 
 final class SimplePickerExampleViewController: UIViewController {
-    private let pickerViewList = [UIPickerView(), UIPickerView(), UIPickerView()]
+    private let pickerViewList = (0..<3).map { _ in UIPickerView() }
     
     private let disposeBag = DisposeBag()
     
