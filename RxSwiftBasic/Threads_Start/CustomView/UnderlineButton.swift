@@ -1,24 +1,23 @@
 //
-//  FilledButton.swift
+//  UnderlineButton.swift
 //  RxSwiftBasic
 //
-//  Created by Minjae Kim on 8/1/24.
+//  Created by Minjae Kim on 8/2/24.
 //
 
 import UIKit
 
-class FilledButton: UIButton {
+class UnderlineButton: UIButton {
     
     init(title: String) {
         super.init(frame: .zero)
         
         configuration = .plain()
-        layer.cornerRadius = 10
         configuration?.title = title
         configuration?.attributedTitle = AttributedString(NSAttributedString(
             string: title,
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.white
+                NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
             ]
         ))
     }
