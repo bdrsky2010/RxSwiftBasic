@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import SnapKit
-import Toast
 
 final class PasswordViewController: UIViewController {
     private let passwordTextField = BorderTextField(placeholderText: "비밀번호를 입력해주세요")
@@ -43,9 +42,8 @@ final class PasswordViewController: UIViewController {
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
-            .withLatestFrom(passwordTextField.rx.text.orEmpty)
             .bind(with: self) { owner, number in
-                owner.view.makeToast("\(number) 입력됨", duration: 1.5)
+                owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
             }
             .disposed(by: disposeBag)
     }

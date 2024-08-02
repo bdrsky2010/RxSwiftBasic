@@ -33,6 +33,12 @@ final class LoginViewController: UIViewController {
                 owner.view.makeToast("로그인 완료", duration: 1.5)
             }
             .disposed(by: disposeBag)
+        
+        signupButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(EmailViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func configureView() {
