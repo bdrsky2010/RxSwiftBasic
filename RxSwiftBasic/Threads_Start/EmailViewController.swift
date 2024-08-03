@@ -12,6 +12,7 @@ import RxSwift
 import SnapKit
 
 final class EmailViewController: UIViewController {
+    private let titleLabel = UILabel()
     private let idTextField = BorderTextField(placeholderText: "")
     private let atSighLabel = UILabel()
     private let domainTextField = BorderTextField(placeholderText: "")
@@ -51,13 +52,19 @@ final class EmailViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = .white
         
+        view.addSubview(titleLabel)
         view.addSubview(idTextField)
         view.addSubview(atSighLabel)
         view.addSubview(domainTextField)
         view.addSubview(nextButton)
         
-        idTextField.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(200)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        idTextField.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.width.equalTo(domainTextField.snp.width)
             make.height.equalTo(50)
@@ -77,11 +84,13 @@ final class EmailViewController: UIViewController {
         }
         
         nextButton.snp.makeConstraints { make in
-            make.top.equalTo(domainTextField.snp.bottom).offset(4)
+            make.top.equalTo(domainTextField.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(50)
         }
         
+        titleLabel.text = "이메일"
+        titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
         atSighLabel.text = "@"
         atSighLabel.font = .systemFont(ofSize: 20, weight: .bold)
     }

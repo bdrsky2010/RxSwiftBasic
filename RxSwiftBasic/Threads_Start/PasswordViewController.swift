@@ -12,6 +12,7 @@ import RxSwift
 import SnapKit
 
 final class PasswordViewController: UIViewController {
+    private let titleLabel = UILabel()
     private let passwordTextField = BorderTextField(placeholderText: "비밀번호를 입력해주세요")
     private let validLabel = UILabel()
     private let nextButton = FilledButton(title: "다음")
@@ -51,13 +52,19 @@ final class PasswordViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = .white
         
+        view.addSubview(titleLabel)
         view.addSubview(passwordTextField)
         view.addSubview(validLabel)
         view.addSubview(nextButton)
         
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(200)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
         passwordTextField.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(200)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
@@ -68,10 +75,12 @@ final class PasswordViewController: UIViewController {
         
         nextButton.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.top.equalTo(validLabel.snp.bottom).offset(4)
+            make.top.equalTo(validLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
+        titleLabel.text = "비밀번호"
+        titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
         validLabel.text = ""
         validLabel.textColor = .systemRed
     }
