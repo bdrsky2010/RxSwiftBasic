@@ -21,8 +21,6 @@ final class PhoneViewController: UIViewController {
     private let nextButton = FilledButton(title: "다음")
     
     private let firstNumber = BehaviorRelay(value: "010")
-    private let secondNumber = BehaviorRelay(value: "")
-    private let thirdNumber = BehaviorRelay(value: "")
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
