@@ -6,10 +6,20 @@
 //
 
 import Foundation
+import Differentiator
 
 struct SectionShopping {
     let header: String
-    var list: [Shopping]
+    var items: [Item]
+}
+
+extension SectionShopping: SectionModelType {
+    typealias Item = Shopping
+    
+    init(original: SectionShopping, items: [Shopping]) {
+        self = original
+        self.items = items
+    }
 }
 
 struct Shopping: Hashable, Identifiable {
@@ -28,7 +38,7 @@ struct ShoppingData {
     ]
     
     static let sections: [SectionShopping] = [
-        SectionShopping(header: "전체", list: data),
-        SectionShopping(header: "완료", list: data.filter { $0.isComplete })
+        SectionShopping(header: "미완료", items: data.filter { !$0.isComplete }),
+        SectionShopping(header: "완료", items: data.filter { $0.isComplete })
     ]
 }
