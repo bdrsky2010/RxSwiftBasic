@@ -33,9 +33,10 @@ final class ShoppingListViewController: UIViewController {
         let viewInput = ShoppingListViewModel.Input(addTap: addTap)
         var viewOutput = viewModel.transform(input: viewInput)
         
+        
         let dataSource = RxTableViewSectionedReloadDataSource<SectionShopping>(
-            configureCell: { dataSource, tableView, indexPath, item in
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ShoppingListTableViewCell.identifier, for: indexPath) as? ShoppingListTableViewCell
+            configureCell: { [weak self] dataSource, tableView, indexPath, item in
+                guard let self, let cell = tableView.dequeueReusableCell(withIdentifier: ShoppingListTableViewCell.identifier, for: indexPath) as? ShoppingListTableViewCell
                 else { return UITableViewCell() }
                 
                 cell.completeButton.configuration?.image = (item.isComplete ? UIImage(systemName: "checkmark.square.fill") : UIImage(systemName: "checkmark.square"))?
@@ -44,6 +45,17 @@ final class ShoppingListViewController: UIViewController {
                 cell.starButton.configuration?.image = (item.isStar ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"))?
                     .withTintColor(.systemYellow, renderingMode: .alwaysTemplate)
                 
+                let completeTap = cell.completeButton.rx
+                    .tap
+                    .withLatestFrom(Observable.just(indexPath))
+                
+                let starTap = cell.completeButton.rx
+                    .tap
+                    .withLatestFrom(Observable.just(indexPath))
+                
+                let cellInput = ShoppingListViewModel.CellInput(completeTap: completeTap, starTap: starTap)
+                let output = viewModel.transform(input: cellInput)
+                viewOutput.reload = output.reload
                 return cell
             })
         
@@ -74,6 +86,7 @@ final class ShoppingListViewController: UIViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
+        shoppingTableView.rowHeight = 50
         shoppingTableView.register(ShoppingListTableViewCell.self, forCellReuseIdentifier: ShoppingListTableViewCell.identifier)
     }
 }

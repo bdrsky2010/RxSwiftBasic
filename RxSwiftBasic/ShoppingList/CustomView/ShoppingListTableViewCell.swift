@@ -34,9 +34,9 @@ final class ShoppingListTableViewCell: UITableViewCell {
         }
         
         completeButton.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
             make.leading.equalToSuperview().offset(20)
-            make.size.equalTo(30)
-            make.centerY.equalToSuperview()
+            make.width.equalTo(completeButton.snp.height)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -46,14 +46,14 @@ final class ShoppingListTableViewCell: UITableViewCell {
         }
         
         starButton.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(16)
-            make.size.equalTo(30)
+            make.verticalEdges.equalToSuperview()
+            make.width.equalTo(starButton.snp.height)
             make.trailing.equalToSuperview().offset(-20)
         }
         
         cellBackgroundView.backgroundColor = .secondarySystemBackground
         cellBackgroundView.layer.cornerRadius = 10
-        
+    
         completeButton.configuration = .plain()
         completeButton.configuration?.baseForegroundColor = .systemRed
         

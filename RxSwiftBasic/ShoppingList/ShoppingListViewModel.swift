@@ -16,12 +16,12 @@ final class ShoppingListViewModel {
     }
     
     struct CellInput {
-        let completeTap: ControlEvent<(IndexPath, Shopping)>
-        let starTap: ControlEvent<(IndexPath, Shopping)>
+        let completeTap: Observable<IndexPath>
+        let starTap: Observable<IndexPath>
     }
     
     struct Output {
-        let reload: BehaviorRelay<[SectionShopping]>
+        var reload: BehaviorRelay<[SectionShopping]>
     }
     
     private let sectionShoppingList = BehaviorRelay(value: [SectionShopping]())
@@ -44,7 +44,22 @@ final class ShoppingListViewModel {
         return Output(reload: sectionShoppingList)
     }
     
-//    func transform(input: CellInput) -> Output {
-//        
-//    }
+    func transform(input: CellInput) -> Output {
+        input.completeTap
+            .withLatestFrom(sectionShoppingList) { ($0, $1) }
+            .bind(with: self) { owner, tuple in
+                print("\(tuple.0)")
+                let section = tuple.0.section
+                let index = tuple.0.row
+                var data = tuple.1
+                let list = data[section]
+                var shopping = list.items[index]
+                shopping.isComplete.toggle()
+                data[section].items.remove(at: index)
+                data[section == 0 ? 1 : 0].items.insert(shopping, at: 0)
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(reload: sectionShoppingList)
+    }
 }
