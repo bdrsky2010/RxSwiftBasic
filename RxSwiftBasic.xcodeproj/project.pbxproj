@@ -33,6 +33,18 @@
 		7BB51DC22C5D1D4000F41271 /* UnderlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DC12C5D1D4000F41271 /* UnderlineButton.swift */; };
 		7BB51DC42C5D21CF00F41271 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DC32C5D21CF00F41271 /* PhoneViewController.swift */; };
 		7BB51DC72C5F665500F41271 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DC62C5F665500F41271 /* UIViewController+.swift */; };
+		7BB51DD02C60D49A00F41271 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DCF2C60D49A00F41271 /* ShoppingListViewController.swift */; };
+		7BB51DD22C60D4E400F41271 /* ShoppingListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DD12C60D4E400F41271 /* ShoppingListModel.swift */; };
+		7BB51DD42C60D4EE00F41271 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DD32C60D4EE00F41271 /* ShoppingListViewModel.swift */; };
+		7BB51DD72C60DB7400F41271 /* AddTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DD62C60DB7400F41271 /* AddTextField.swift */; };
+		7BB51DDA2C60E4CE00F41271 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 7BB51DD92C60E4CE00F41271 /* Differentiator */; };
+		7BB51DDC2C60E4CE00F41271 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 7BB51DDB2C60E4CE00F41271 /* RxDataSources */; };
+		7BB51DDE2C61086700F41271 /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DDD2C61086700F41271 /* ShoppingListTableViewCell.swift */; };
+		7BB51DE02C619BA600F41271 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DDF2C619BA600F41271 /* LoginViewModel.swift */; };
+		7BB51DE22C619CF000F41271 /* EmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DE12C619CF000F41271 /* EmailViewModel.swift */; };
+		7BB51DE42C619E9900F41271 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DE32C619E9900F41271 /* PasswordViewModel.swift */; };
+		7BB51DE62C619EA500F41271 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DE52C619EA500F41271 /* PhoneViewModel.swift */; };
+		7BB51DE82C619EAC00F41271 /* BirthDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51DE72C619EAC00F41271 /* BirthDayViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +70,16 @@
 		7BB51DC12C5D1D4000F41271 /* UnderlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineButton.swift; sourceTree = "<group>"; };
 		7BB51DC32C5D21CF00F41271 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
 		7BB51DC62C5F665500F41271 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		7BB51DCF2C60D49A00F41271 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
+		7BB51DD12C60D4E400F41271 /* ShoppingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListModel.swift; sourceTree = "<group>"; };
+		7BB51DD32C60D4EE00F41271 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
+		7BB51DD62C60DB7400F41271 /* AddTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextField.swift; sourceTree = "<group>"; };
+		7BB51DDD2C61086700F41271 /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		7BB51DDF2C619BA600F41271 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7BB51DE12C619CF000F41271 /* EmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewModel.swift; sourceTree = "<group>"; };
+		7BB51DE32C619E9900F41271 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		7BB51DE52C619EA500F41271 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		7BB51DE72C619EAC00F41271 /* BirthDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +87,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB51DDA2C60E4CE00F41271 /* Differentiator in Frameworks */,
 				7BB51DAB2C594E7D00F41271 /* Toast in Frameworks */,
 				7BB51DA62C594DFF00F41271 /* Alamofire in Frameworks */,
 				7BB51D952C5910C400F41271 /* Kingfisher in Frameworks */,
 				7BB51D922C5910A500F41271 /* RxSwift in Frameworks */,
+				7BB51DDC2C60E4CE00F41271 /* RxDataSources in Frameworks */,
 				7BB51D902C5910A500F41271 /* RxCocoa in Frameworks */,
 				7BB51D8D2C59109100F41271 /* SnapKit in Frameworks */,
 			);
@@ -96,6 +120,7 @@
 		7BB51D762C590F6A00F41271 /* RxSwiftBasic */ = {
 			isa = PBXGroup;
 			children = (
+				7BB51DCE2C60D43500F41271 /* ShoppingList */,
 				7BB51DB12C5BBDB400F41271 /* Threads_Start */,
 				7BB51DB02C5BBD9200F41271 /* Basic */,
 				7BB51D772C590F6A00F41271 /* AppDelegate.swift */,
@@ -127,10 +152,15 @@
 			children = (
 				7BB51DB42C5BD61D00F41271 /* CustomView */,
 				7BB51DBF2C5D1C7900F41271 /* LoginViewController.swift */,
+				7BB51DDF2C619BA600F41271 /* LoginViewModel.swift */,
 				7BB51DBB2C5D1C5100F41271 /* EmailViewController.swift */,
+				7BB51DE12C619CF000F41271 /* EmailViewModel.swift */,
 				7BB51DB22C5BBDE700F41271 /* PasswordViewController.swift */,
+				7BB51DE32C619E9900F41271 /* PasswordViewModel.swift */,
 				7BB51DC32C5D21CF00F41271 /* PhoneViewController.swift */,
+				7BB51DE52C619EA500F41271 /* PhoneViewModel.swift */,
 				7BB51DBD2C5D1C6300F41271 /* BirthDayViewController.swift */,
+				7BB51DE72C619EAC00F41271 /* BirthDayViewModel.swift */,
 			);
 			path = Threads_Start;
 			sourceTree = "<group>";
@@ -151,6 +181,26 @@
 				7BB51DC62C5F665500F41271 /* UIViewController+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7BB51DCE2C60D43500F41271 /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				7BB51DD52C60DB5400F41271 /* CustomView */,
+				7BB51DD12C60D4E400F41271 /* ShoppingListModel.swift */,
+				7BB51DCF2C60D49A00F41271 /* ShoppingListViewController.swift */,
+				7BB51DD32C60D4EE00F41271 /* ShoppingListViewModel.swift */,
+			);
+			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		7BB51DD52C60DB5400F41271 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				7BB51DD62C60DB7400F41271 /* AddTextField.swift */,
+				7BB51DDD2C61086700F41271 /* ShoppingListTableViewCell.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +226,8 @@
 				7BB51D942C5910C400F41271 /* Kingfisher */,
 				7BB51DA52C594DFF00F41271 /* Alamofire */,
 				7BB51DAA2C594E7D00F41271 /* Toast */,
+				7BB51DD92C60E4CE00F41271 /* Differentiator */,
+				7BB51DDB2C60E4CE00F41271 /* RxDataSources */,
 			);
 			productName = RxSwiftBasic;
 			productReference = 7BB51D742C590F6A00F41271 /* RxSwiftBasic.app */;
@@ -211,6 +263,7 @@
 				7BB51D932C5910C400F41271 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7BB51DA42C594DFF00F41271 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7BB51DA92C594E7D00F41271 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				7BB51DD82C60E4CE00F41271 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 7BB51D752C590F6A00F41271 /* Products */;
 			projectDirPath = "";
@@ -239,11 +292,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB51DE02C619BA600F41271 /* LoginViewModel.swift in Sources */,
 				7BB51DC02C5D1C7900F41271 /* LoginViewController.swift in Sources */,
+				7BB51DDE2C61086700F41271 /* ShoppingListTableViewCell.swift in Sources */,
 				7BB51D7C2C590F6A00F41271 /* ViewController.swift in Sources */,
+				7BB51DE42C619E9900F41271 /* PasswordViewModel.swift in Sources */,
+				7BB51DD72C60DB7400F41271 /* AddTextField.swift in Sources */,
 				7BB51DC22C5D1D4000F41271 /* UnderlineButton.swift in Sources */,
 				7BB51D9C2C5912F000F41271 /* NumbersViewController.swift in Sources */,
 				7BB51D782C590F6A00F41271 /* AppDelegate.swift in Sources */,
+				7BB51DE82C619EAC00F41271 /* BirthDayViewModel.swift in Sources */,
 				7BB51DB62C5BD64C00F41271 /* BorderTextField.swift in Sources */,
 				7BB51DC72C5F665500F41271 /* UIViewController+.swift in Sources */,
 				7BB51DBE2C5D1C6300F41271 /* BirthDayViewController.swift in Sources */,
@@ -252,8 +310,13 @@
 				7BB51DA02C59131800F41271 /* SimpleTableViewController.swift in Sources */,
 				7BB51DBC2C5D1C5100F41271 /* EmailViewController.swift in Sources */,
 				7BB51DBA2C5BD69500F41271 /* FilledButton.swift in Sources */,
+				7BB51DD22C60D4E400F41271 /* ShoppingListModel.swift in Sources */,
+				7BB51DD42C60D4EE00F41271 /* ShoppingListViewModel.swift in Sources */,
 				7BB51D7A2C590F6A00F41271 /* SceneDelegate.swift in Sources */,
+				7BB51DE22C619CF000F41271 /* EmailViewModel.swift in Sources */,
+				7BB51DD02C60D49A00F41271 /* ShoppingListViewController.swift in Sources */,
 				7BB51DC42C5D21CF00F41271 /* PhoneViewController.swift in Sources */,
+				7BB51DE62C619EA500F41271 /* PhoneViewModel.swift in Sources */,
 				7BB51D9E2C5912FF00F41271 /* SimpleValidationViewController.swift in Sources */,
 				7BB51DB32C5BBDE700F41271 /* PasswordViewController.swift in Sources */,
 			);
@@ -520,6 +583,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		7BB51DD82C60E4CE00F41271 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -552,6 +623,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7BB51DA92C594E7D00F41271 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		7BB51DD92C60E4CE00F41271 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BB51DD82C60E4CE00F41271 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		7BB51DDB2C60E4CE00F41271 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BB51DD82C60E4CE00F41271 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
