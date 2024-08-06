@@ -30,7 +30,8 @@ final class ShoppingListViewController: UIViewController {
             .tap
             .withLatestFrom(addTextField.textField.rx.text.orEmpty)
         
-        let viewInput = ShoppingListViewModel.Input(addTap: addTap)
+        let delete = shoppingTableView.rx.itemDeleted
+        let viewInput = ShoppingListViewModel.Input(addTap: addTap, delete: delete)
         var viewOutput = viewModel.transform(input: viewInput)
         
         
@@ -87,6 +88,7 @@ final class ShoppingListViewController: UIViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
+        shoppingTableView.allowsSelection = false
         shoppingTableView.rowHeight = 50
         shoppingTableView.register(ShoppingListTableViewCell.self, forCellReuseIdentifier: ShoppingListTableViewCell.identifier)
     }

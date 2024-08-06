@@ -13,6 +13,7 @@ import RxSwift
 final class ShoppingListViewModel {
     struct Input {
         let addTap: Observable<ControlProperty<String>.Element>
+        let delete: ControlEvent<IndexPath>
     }
     
     struct CellInput {
@@ -42,6 +43,16 @@ final class ShoppingListViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.delete
+            .withLatestFrom(sectionShoppingList) { ($0, $1) }
+            .bind(with: self) { owner, tuple in
+                let indexPath = tuple.0
+                var data = tuple.1
+                data[indexPath.section].items.remove(at: indexPath.row)
+                owner.sectionShoppingList.accept(data)
+            }
+            .disposed(by: disposeBag)
+        
         return Output(reload: sectionShoppingList)
     }
     
@@ -49,6 +60,7 @@ final class ShoppingListViewModel {
         input.completeTap
             .withLatestFrom(sectionShoppingList) { ($0, $1) }
             .bind(with: self) { owner, tuple in
+                print(tuple.0)
                 let section = tuple.0.section
                 let index = tuple.0.row
                 var data = tuple.1
