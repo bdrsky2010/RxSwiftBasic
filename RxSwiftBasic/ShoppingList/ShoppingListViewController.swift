@@ -44,16 +44,17 @@ final class ShoppingListViewController: UIViewController {
                 cell.titleLabel.text = item.title
                 cell.starButton.configuration?.image = (item.isStar ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"))?
                     .withTintColor(.systemYellow, renderingMode: .alwaysTemplate)
+                cell.indexPath.accept(indexPath)
                 
                 let completeTap = cell.completeButton.rx
                     .tap
-                    .withLatestFrom(Observable.just(indexPath))
+                    .withLatestFrom(cell.indexPath)
                 
-                let starTap = cell.completeButton.rx
+                let starTap = cell.starButton.rx
                     .tap
-                    .withLatestFrom(Observable.just(indexPath))
+                    .withLatestFrom(cell.indexPath)
                 
-                let cellInput = ShoppingListViewModel.CellInput(completeTap: completeTap, starTap: starTap)
+                let cellInput = ShoppingListViewModel.CellInput(completeTap: completeTap, starTap: starTap, disposeBag: cell.disposeBag)
                 let output = viewModel.transform(input: cellInput)
                 viewOutput.reload = output.reload
                 return cell

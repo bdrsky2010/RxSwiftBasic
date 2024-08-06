@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import SnapKit
 
@@ -18,7 +19,13 @@ final class ShoppingListTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let starButton = UIButton(type: .system)
     
-    let disposeBag = DisposeBag()
+    let indexPath = BehaviorRelay(value: IndexPath(row: 0, section: 0))
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

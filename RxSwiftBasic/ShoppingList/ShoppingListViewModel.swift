@@ -18,6 +18,7 @@ final class ShoppingListViewModel {
     struct CellInput {
         let completeTap: Observable<IndexPath>
         let starTap: Observable<IndexPath>
+        let disposeBag: DisposeBag
     }
     
     struct Output {
@@ -48,7 +49,6 @@ final class ShoppingListViewModel {
         input.completeTap
             .withLatestFrom(sectionShoppingList) { ($0, $1) }
             .bind(with: self) { owner, tuple in
-                print("\(tuple.0)")
                 let section = tuple.0.section
                 let index = tuple.0.row
                 var data = tuple.1
@@ -56,9 +56,25 @@ final class ShoppingListViewModel {
                 var shopping = list.items[index]
                 shopping.isComplete.toggle()
                 data[section].items.remove(at: index)
-                data[section == 0 ? 1 : 0].items.insert(shopping, at: 0)
+                if section == 0 {
+                    data[1].items.insert(shopping, at: 0)
+                } else {
+                    data[0].items.append(shopping)
+                }
+                owner.sectionShoppingList.accept(data)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: input.disposeBag)
+        
+        input.starTap
+            .withLatestFrom(sectionShoppingList) { ($0, $1) }
+            .bind(with: self) { owner, tuple in
+                let section = tuple.0.section
+                let index = tuple.0.row
+                var data = tuple.1
+                data[section].items[index].isStar.toggle()
+                owner.sectionShoppingList.accept(data)
+            }
+            .disposed(by: input.disposeBag)
         
         return Output(reload: sectionShoppingList)
     }
