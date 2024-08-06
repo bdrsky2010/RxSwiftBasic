@@ -20,7 +20,8 @@ final class PhoneViewController: UIViewController {
     private let thirdNumberTextField = BorderTextField(placeholderText: "")
     private let nextButton = FilledButton(title: "다음")
     
-    private let firstNumber = BehaviorRelay(value: "010")
+    
+    private let viewModel = PhoneViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -30,43 +31,45 @@ final class PhoneViewController: UIViewController {
     }
     
     private func bind() {
-        firstNumber
+        let firstNumber = firstNumberTextField.rx.text
+        let secondNumber = secondNumberTextField.rx.text
+        let thirdNumber = thirdNumberTextField.rx.text
+        let input = PhoneViewModel.Input(first: firstNumber,
+                                         second: secondNumber,
+                                         third: thirdNumber,
+                                         nextTap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.firstNumber
             .bind(to: firstNumberTextField.rx.text)
             .disposed(by: disposeBag)
         
-        let firstValid = firstNumberTextField.rx.text.orEmpty
-            .map { Int($0) != nil && $0.count == 3 }
-        firstValid
+        output.validFirst
             .bind(with: self) { owner, isValid in
                 owner.firstNumberTextField.layer.borderColor = isValid ? UIColor.systemBlue.cgColor : UIColor.systemRed.cgColor
             }
             .disposed(by: disposeBag)
-        
-        let secondValid = secondNumberTextField.rx.text.orEmpty
-            .map { Int($0) != nil && $0.count == 4 }
-        secondValid
+            
+        output.validSecond
             .bind(with: self) { owner, isValid in
                 owner.secondNumberTextField.layer.borderColor = isValid ? UIColor.systemBlue.cgColor : UIColor.systemRed.cgColor
             }
             .disposed(by: disposeBag)
         
-        let thirdValid = thirdNumberTextField.rx.text.orEmpty
-            .map { Int($0) != nil && $0.count == 4 }
-        thirdValid
+        output.validThird
             .bind(with: self) { owner, isValid in
                 owner.thirdNumberTextField.layer.borderColor = isValid ? UIColor.systemBlue.cgColor : UIColor.systemRed.cgColor
             }
             .disposed(by: disposeBag)
         
-        let totalValid = Observable.combineLatest(firstValid, secondValid, thirdValid) { $0 && $1 && $2 }
-        
-        totalValid.bind(with: self) { owner, isValid in
+        output.validTotal
+            .bind(with: self) { owner, isValid in
             owner.nextButton.isEnabled = isValid
             owner.nextButton.backgroundColor = isValid ? .systemBlue : .systemGray
         }
         .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        output.nextTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(BirthDayViewController(), animated: true)
             }

@@ -19,6 +19,8 @@ final class LoginViewController: UIViewController {
     private let passwordTextField = BorderTextField(placeholderText: "비밀번호를 입력해주세요")
     private let loginButton = FilledButton(title: "로그인")
     private let signupButton = UnderlineButton(title: "회원가입")
+    
+    private let viewModel = LoginViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -28,13 +30,19 @@ final class LoginViewController: UIViewController {
     }
     
     private func bind() {
-        loginButton.rx.tap
+        let loginTap = loginButton.rx.tap
+        let signupTap = signupButton.rx.tap
+        let input = LoginViewModel.Input(loginTap: loginTap, signupTap: signupTap)
+        let output = viewModel.transform(input: input)
+        
+        output.loginTap
             .bind(with: self) { owner, _ in
                 owner.view.makeToast("로그인 완료", duration: 1.5)
             }
             .disposed(by: disposeBag)
         
-        signupButton.rx.tap
+        
+        output.signupTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(EmailViewController(), animated: true)
             }

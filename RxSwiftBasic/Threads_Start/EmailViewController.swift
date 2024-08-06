@@ -18,6 +18,7 @@ final class EmailViewController: UIViewController {
     private let domainTextField = BorderTextField(placeholderText: "")
     private let nextButton = FilledButton(title: "다음")
     
+    private let viewModel = EmailViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -27,22 +28,19 @@ final class EmailViewController: UIViewController {
     }
     
     private func bind() {
-        let idValid = idTextField.rx.text.orEmpty
-            .map { $0.count > 0 }
+        let id = idTextField.rx.text
+        let domain = domainTextField.rx.text
+        let input = EmailViewModel.Input(id: id, domain: domain, nextTap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
         
-        let domainValid = domainTextField.rx.text.orEmpty
-            .map { $0.count > 0 }
-        
-        let emailValid = Observable.combineLatest(idValid, domainValid) { $0 && $1 }
-        
-        emailValid
+        output.emailValid
             .bind(with: self) { owner, isValid in
                 owner.nextButton.isEnabled = isValid
                 owner.nextButton.backgroundColor = isValid ? .systemBlue : .systemGray
             }
             .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        output.nextTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PasswordViewController(), animated: true)
             }
