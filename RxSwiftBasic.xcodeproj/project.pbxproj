@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B335C082C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C072C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift */; };
+		7B335C0D2C63A2D900AD2DF7 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C0C2C63A2D900AD2DF7 /* RecommendModel.swift */; };
 		7BB51D782C590F6A00F41271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51D772C590F6A00F41271 /* AppDelegate.swift */; };
 		7BB51D7A2C590F6A00F41271 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51D792C590F6A00F41271 /* SceneDelegate.swift */; };
 		7BB51D7C2C590F6A00F41271 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51D7B2C590F6A00F41271 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B335C072C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
+		7B335C0C2C63A2D900AD2DF7 /* RecommendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
 		7BB51D742C590F6A00F41271 /* RxSwiftBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB51D772C590F6A00F41271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BB51D792C590F6A00F41271 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B335C092C63A2A000AD2DF7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7BB51DD12C60D4E400F41271 /* ShoppingListModel.swift */,
+				7B335C0C2C63A2D900AD2DF7 /* RecommendModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B335C0A2C63A2AB00AD2DF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BB51DCF2C60D49A00F41271 /* ShoppingListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B335C0B2C63A2B000AD2DF7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7BB51DD32C60D4EE00F41271 /* ShoppingListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7BB51D6B2C590F6A00F41271 = {
 			isa = PBXGroup;
 			children = (
@@ -187,9 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				7BB51DD52C60DB5400F41271 /* CustomView */,
-				7BB51DD12C60D4E400F41271 /* ShoppingListModel.swift */,
-				7BB51DCF2C60D49A00F41271 /* ShoppingListViewController.swift */,
-				7BB51DD32C60D4EE00F41271 /* ShoppingListViewModel.swift */,
+				7B335C092C63A2A000AD2DF7 /* Model */,
+				7B335C0A2C63A2AB00AD2DF7 /* View */,
+				7B335C0B2C63A2B000AD2DF7 /* ViewModel */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -199,6 +228,7 @@
 			children = (
 				7BB51DD62C60DB7400F41271 /* AddTextField.swift */,
 				7BB51DDD2C61086700F41271 /* ShoppingListTableViewCell.swift */,
+				7B335C072C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -296,6 +326,7 @@
 				7BB51DC02C5D1C7900F41271 /* LoginViewController.swift in Sources */,
 				7BB51DDE2C61086700F41271 /* ShoppingListTableViewCell.swift in Sources */,
 				7BB51D7C2C590F6A00F41271 /* ViewController.swift in Sources */,
+				7B335C0D2C63A2D900AD2DF7 /* RecommendModel.swift in Sources */,
 				7BB51DE42C619E9900F41271 /* PasswordViewModel.swift in Sources */,
 				7BB51DD72C60DB7400F41271 /* AddTextField.swift in Sources */,
 				7BB51DC22C5D1D4000F41271 /* UnderlineButton.swift in Sources */,
@@ -311,6 +342,7 @@
 				7BB51DBC2C5D1C5100F41271 /* EmailViewController.swift in Sources */,
 				7BB51DBA2C5BD69500F41271 /* FilledButton.swift in Sources */,
 				7BB51DD22C60D4E400F41271 /* ShoppingListModel.swift in Sources */,
+				7B335C082C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift in Sources */,
 				7BB51DD42C60D4EE00F41271 /* ShoppingListViewModel.swift in Sources */,
 				7BB51D7A2C590F6A00F41271 /* SceneDelegate.swift in Sources */,
 				7BB51DE22C619CF000F41271 /* EmailViewModel.swift in Sources */,
