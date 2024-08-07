@@ -13,8 +13,13 @@ struct SectionShopping {
     var items: [Item]
 }
 
-extension SectionShopping: SectionModelType {
+extension SectionShopping: AnimatableSectionModelType {
+    typealias Identity = String
     typealias Item = Shopping
+    
+    var identity: String {
+        return header
+    }
     
     init(original: SectionShopping, items: [Shopping]) {
         self = original
@@ -22,11 +27,19 @@ extension SectionShopping: SectionModelType {
     }
 }
 
-struct Shopping: Hashable, Identifiable {
+struct Shopping: Identifiable {
     let id = UUID()
     let title: String
     var isComplete: Bool
     var isStar: Bool
+}
+
+extension Shopping: IdentifiableType, Equatable {
+    typealias Identity = UUID
+    
+    var identity: UUID {
+        return id
+    }
 }
 
 struct ShoppingData {
