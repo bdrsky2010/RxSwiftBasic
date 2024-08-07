@@ -117,7 +117,8 @@ extension ShoppingListViewController {
         
         shoppingTableView.snp.makeConstraints { make in
             make.top.equalTo(recommendCollectionView.snp.bottom)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
         }
         
         recommendCollectionView.register(RecommendCollectionViewCell.self, forCellWithReuseIdentifier: RecommendCollectionViewCell.identifier)
@@ -134,7 +135,7 @@ extension ShoppingListViewController {
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+        let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(40),
                                                heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(8)
