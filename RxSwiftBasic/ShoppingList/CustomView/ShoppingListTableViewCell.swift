@@ -19,7 +19,6 @@ final class ShoppingListTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let starButton = UIButton(type: .system)
     
-    let indexPath = BehaviorRelay(value: IndexPath(row: 0, section: 0))
     var disposeBag = DisposeBag()
     
     override func prepareForReuse() {

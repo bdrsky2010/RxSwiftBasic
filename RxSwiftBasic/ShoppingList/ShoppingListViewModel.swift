@@ -17,8 +17,8 @@ final class ShoppingListViewModel {
     }
     
     struct CellInput {
-        let completeTap: Observable<IndexPath>
-        let starTap: Observable<IndexPath>
+        let completeTap: Observable<UUID>
+        let starTap: Observable<UUID>
         let disposeBag: DisposeBag
     }
     
@@ -60,31 +60,49 @@ final class ShoppingListViewModel {
         input.completeTap
             .withLatestFrom(sectionShoppingList) { ($0, $1) }
             .bind(with: self) { owner, tuple in
-                print(tuple.0)
-                let section = tuple.0.section
-                let index = tuple.0.row
+                let id = tuple.0
                 var data = tuple.1
-                let list = data[section]
-                var shopping = list.items[index]
-                shopping.isComplete.toggle()
-                data[section].items.remove(at: index)
-                if section == 0 {
-                    data[1].items.insert(shopping, at: 0)
-                } else {
-                    data[0].items.append(shopping)
+                
+                for i in 0..<data.count {
+                    for j in 0..<data[i].items.count {
+                        if data[i].items[j].id == id {
+                            let section = i
+                            let index = j
+                            var shopping = data[section].items[index]
+                            
+                            shopping.isComplete.toggle()
+                            data[section].items.remove(at: index)
+                            if section == 0 {
+                                data[1].items.insert(shopping, at: 0)
+                            } else {
+                                data[0].items.append(shopping)
+                            }
+                            owner.sectionShoppingList.accept(data)
+                            return
+                        }
+                    }
                 }
-                owner.sectionShoppingList.accept(data)
             }
             .disposed(by: input.disposeBag)
         
         input.starTap
             .withLatestFrom(sectionShoppingList) { ($0, $1) }
             .bind(with: self) { owner, tuple in
-                let section = tuple.0.section
-                let index = tuple.0.row
+                let id = tuple.0
                 var data = tuple.1
-                data[section].items[index].isStar.toggle()
-                owner.sectionShoppingList.accept(data)
+                
+                for i in 0..<data.count {
+                    for j in 0..<data[i].items.count {
+                        if data[i].items[j].id == id {
+                            let section = i
+                            let index = j
+                            
+                            data[section].items[index].isStar.toggle()
+                            owner.sectionShoppingList.accept(data)
+                            return
+                        }
+                    }
+                }
             }
             .disposed(by: input.disposeBag)
         

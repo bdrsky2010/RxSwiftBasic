@@ -34,8 +34,7 @@ final class ShoppingListViewController: UIViewController {
         let viewInput = ShoppingListViewModel.Input(addTap: addTap, delete: delete)
         var viewOutput = viewModel.transform(input: viewInput)
         
-        
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionShopping>(
+        let dataSource = RxTableViewSectionedAnimatedDataSource<SectionShopping>(
             configureCell: { [weak self] dataSource, tableView, indexPath, item in
                 guard let self, let cell = tableView.dequeueReusableCell(withIdentifier: ShoppingListTableViewCell.identifier, for: indexPath) as? ShoppingListTableViewCell
                 else { return UITableViewCell() }
@@ -45,15 +44,16 @@ final class ShoppingListViewController: UIViewController {
                 cell.titleLabel.text = item.title
                 cell.starButton.configuration?.image = (item.isStar ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"))?
                     .withTintColor(.systemYellow, renderingMode: .alwaysTemplate)
-                cell.indexPath.accept(indexPath)
+                
+                let id = Observable.just(item.id)
                 
                 let completeTap = cell.completeButton.rx
                     .tap
-                    .withLatestFrom(cell.indexPath)
+                    .withLatestFrom(id)
                 
                 let starTap = cell.starButton.rx
                     .tap
-                    .withLatestFrom(cell.indexPath)
+                    .withLatestFrom(id)
                 
                 let cellInput = ShoppingListViewModel.CellInput(completeTap: completeTap, starTap: starTap, disposeBag: cell.disposeBag)
                 let output = viewModel.transform(input: cellInput)
@@ -63,6 +63,10 @@ final class ShoppingListViewController: UIViewController {
         
         dataSource.titleForHeaderInSection = { dataSource, index in
             return dataSource.sectionModels[index].header
+        }
+        
+        dataSource.canEditRowAtIndexPath = { dataSource, index in
+            return true
         }
         
         viewOutput.reload
