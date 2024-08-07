@@ -48,7 +48,7 @@ final class ShoppingListViewModel {
             .map { $0.title }
             .withLatestFrom(sectionShoppingList) { ($0, $1) }
             .bind(with: self) { owner, tuple in
-                let recommend = tuple.0
+                let recommend = tuple.0 + " 구매하기"
                 var data = tuple.1
                 data[0].items.insert(Shopping(title: recommend, isComplete: false, isStar: false), at: 0)
                 owner.sectionShoppingList.accept(data)
