@@ -22,7 +22,7 @@ struct SearchApp: Decodable {
     
     let artistViewUrl: String // 개발자 상세 화면
     let fileSizeBytes: String // 파일 용량
-    let sellerUrl: String // 앱 공식 홈페이지
+    let sellerUrl: String? // 앱 공식 홈페이지
     let contentAdvisoryRating: String // 연령
     let userRatingCountForCurrentVersion: Int // 사용자 평가 수
     let trackViewUrl: String // 앱 스토어 상세 페이지 링크
