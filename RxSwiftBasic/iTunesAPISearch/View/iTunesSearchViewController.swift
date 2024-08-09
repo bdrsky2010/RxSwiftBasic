@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 
 final class iTunesSearchViewController: UIViewController {
@@ -16,10 +18,23 @@ final class iTunesSearchViewController: UIViewController {
         return searchController
     }()
     
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         navigationItem.searchController = searchController
+        
+        let url = "https://itunes.apple.com/search?term=kakaotalk&entity=software&country=kr&lang=ko_kr&limit=10"
+        NetworkManager.shared.requestAPIWithSingle(url: url, of: iTunesSearch.self)
+            .subscribe(with: self) { owner, value in
+                dump(value)
+            } onFailure: { owner, error in
+                print("error: \(error)")
+            } onDisposed: { owner in
+                print("disposed")
+            }
+            .disposed(by: disposeBag)
     }
 }
