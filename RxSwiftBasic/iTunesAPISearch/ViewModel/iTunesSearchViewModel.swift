@@ -17,10 +17,10 @@ final class iTunesSearchViewModel {
     }
     
     struct Output {
-        let requestResult: PublishSubject<[SearchApp]>
+        let requestResult: PublishSubject<[SectioniTunesSearch]>
     }
     
-    private let searchResult = PublishSubject<[SearchApp]>()
+    private let searchResult = PublishSubject<[SectioniTunesSearch]>()
     private let disposeBag = DisposeBag()
     
     private let firstLimit = 10
@@ -52,7 +52,8 @@ final class iTunesSearchViewModel {
                 let url = owner.getiTunesAPIUrl(query: owner.requestQuery, limit: owner.requestLimit)
                 NetworkManager.shared.requestAPIWithSingle(url: url, of: iTunesSearch.self)
                     .subscribe(with: self) { owner, value in
-                        dump(value)
+                        print("result count: \(value.resultCount)")
+                        owner.searchResult.onNext([SectioniTunesSearch(items: value.results)])
                     } onFailure: { owner, error in
                         print("error: \(error)")
                     } onDisposed: { owner in
