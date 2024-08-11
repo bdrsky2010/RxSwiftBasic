@@ -43,7 +43,7 @@ final class iTunesSearchCollectionViewCell: UICollectionViewCell {
     }()
     private let screenshotStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
         stackView.axis = .horizontal
         stackView.spacing = 8
         return stackView
@@ -88,7 +88,6 @@ final class iTunesSearchCollectionViewCell: UICollectionViewCell {
             make.trailing.equalTo(downloadButton.snp.leading).offset(-12)
         }
         
-//        downloadButton.setContentHuggingPriority(.init(253), for: .horizontal)
         downloadButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20)
             make.centerY.equalTo(appIconImage.snp.centerY)
@@ -105,9 +104,6 @@ final class iTunesSearchCollectionViewCell: UICollectionViewCell {
             make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
         }
-        print(screenshotStackView.arrangedSubviews)
-        screenshotStackView.layer.borderColor = UIColor.red.cgColor
-        screenshotStackView.layer.borderWidth = 1
     }
     
     func configureContent(searchApp: SearchApp) {
