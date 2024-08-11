@@ -14,7 +14,7 @@ final class AppImageView: UIImageView {
     
     init(cornerRadius: CGFloat) {
         super.init(frame: .zero)
-        contentMode = .scaleAspectFit
+        contentMode = .scaleToFill
         clipsToBounds = true
         layer.cornerRadius = cornerRadius
     }
