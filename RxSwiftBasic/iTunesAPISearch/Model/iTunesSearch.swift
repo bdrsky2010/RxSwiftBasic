@@ -51,6 +51,7 @@ struct SearchApp: Decodable, Hashable, Identifiable {
     let releaseNotes: String // 업데이트 노트
     let minimumOsVersion: String // OS 최소 버전
     let genres: [String] // 앱 장르
+    let version: String
     
     enum CodingKeys: String, CodingKey {
         case id = "trackId"
@@ -76,5 +77,19 @@ struct SearchApp: Decodable, Hashable, Identifiable {
         case releaseNotes
         case minimumOsVersion
         case genres
+        case version
+    }
+}
+
+struct SectioniDetailScreenshot {
+    var items: [Item]
+}
+
+extension SectioniDetailScreenshot: SectionModelType {
+    typealias Item = String
+    
+    init(original: SectioniDetailScreenshot, items: [String]) {
+        self = original
+        self.items = items
     }
 }
