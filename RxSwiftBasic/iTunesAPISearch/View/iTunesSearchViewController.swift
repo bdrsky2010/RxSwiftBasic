@@ -76,7 +76,15 @@ final class iTunesSearchViewController: UIViewController {
             let downloadButtonTap = cell.downloadButton.rx.tap
                 .withLatestFrom(trackViewUrl)
             let input = iTunesSearchCellViewModel.Input(disposeBag: cell.disposeBag, downloadButtonTap: downloadButtonTap)
-            cellViewModel.transform(input: input)
+            let output = cellViewModel.transform(input: input)
+            output.openUrl
+                .subscribe(with: self) { owner, url in
+                    if let url {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                .disposed(by: cell.disposeBag)
+            
             return cell
         }
         

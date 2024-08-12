@@ -15,11 +15,15 @@ final class iTuneSearchDetailViewModel {
     
     struct Input {
         let initVC: PublishSubject<SearchApp>
+        let downloadButtonTap: Observable<String>
+        let companyLabelTap: Observable<String>
     }
     
     struct Output {
         let configureContent: PublishSubject<SearchApp>
         let screenshotUrlList: PublishSubject<[SectioniDetailScreenshot]>
+        let openDownloadUrl: Observable<URL?>
+        let openCompanyUrl: Observable<URL?>
     }
     
     func transform(input: Input) -> Output {
@@ -32,6 +36,15 @@ final class iTuneSearchDetailViewModel {
             .subscribe(screenshotUrlList)
             .disposed(by: disposeBag)
         
-        return Output(configureContent: input.initVC, screenshotUrlList: screenshotUrlList)
+        let openDownloadUrl = input.downloadButtonTap
+            .map { URL(string: $0) }
+        
+        let openCompanyUrl = input.companyLabelTap
+            .map { URL(string: $0) }
+        
+        return Output(configureContent: input.initVC,
+                      screenshotUrlList: screenshotUrlList,
+                      openDownloadUrl: openDownloadUrl,
+                      openCompanyUrl: openCompanyUrl)
     }
 }

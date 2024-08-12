@@ -5,7 +5,7 @@
 //  Created by Minjae Kim on 8/10/24.
 //
 
-import UIKit
+import Foundation
 
 import RxSwift
 
@@ -16,16 +16,12 @@ final class iTunesSearchCellViewModel {
     }
     
     struct Output {
-        
+        let openUrl: Observable<URL?>
     }
     
-    func transform(input: Input) {
-        input.downloadButtonTap
-            .subscribe(with: self) { owner, urlString in
-                if let url = URL(string: urlString) {
-                    UIApplication.shared.open(url)
-                }
-            }
-            .disposed(by: input.disposeBag)
+    func transform(input: Input) -> Output {
+        let openUrl = input.downloadButtonTap
+            .map { URL(string: $0) }
+        return Output(openUrl: openUrl)
     }
 }

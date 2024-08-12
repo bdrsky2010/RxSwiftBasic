@@ -64,8 +64,21 @@ final class iTunesSearchDetailViewController: UIViewController {
     
     private func bind(searchApp: SearchApp) {
         let initVC = PublishSubject<SearchApp>()
+        let downloadButtonTap = downloadButton.rx.tap
+            .withLatestFrom(Observable.just(searchApp))
+            .map { $0.trackViewUrl }
         
-        let input = iTuneSearchDetailViewModel.Input(initVC: initVC)
+        let companyLabelTapGesture = UITapGestureRecognizer()
+        companyLabel.isUserInteractionEnabled = true
+        companyLabel.addGestureRecognizer(companyLabelTapGesture)
+        let companyLabelTap = companyLabelTapGesture.rx
+            .event
+            .withLatestFrom(Observable.just(searchApp))
+            .compactMap { $0.artistViewUrl }
+        
+        let input = iTuneSearchDetailViewModel.Input(initVC: initVC,
+                                                     downloadButtonTap: downloadButtonTap,
+                                                     companyLabelTap: companyLabelTap)
         let output = viewModel.transform(input: input)
         
         output.configureContent
@@ -80,8 +93,8 @@ final class iTunesSearchDetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        let dataSource = RxCollectionViewSectionedReloadDataSource<SectioniDetailScreenshot> { [weak self] dataSource, collectionView, indexPath, item in
-            guard let self, let cell = collectionView.dequeueReusableCell(withReuseIdentifier: iTuneDetailScreenshotCollectionViewCell.identifier, for: indexPath) as? iTuneDetailScreenshotCollectionViewCell else {
+        let dataSource = RxCollectionViewSectionedReloadDataSource<SectioniDetailScreenshot> { dataSource, collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: iTuneDetailScreenshotCollectionViewCell.identifier, for: indexPath) as? iTuneDetailScreenshotCollectionViewCell else {
                 return UICollectionViewCell()
             }
             
@@ -89,6 +102,22 @@ final class iTunesSearchDetailViewController: UIViewController {
             
             return cell
         }
+        
+        output.openDownloadUrl
+            .subscribe(with: self) { owner, url in
+                if let url {
+                    UIApplication.shared.open(url)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.openCompanyUrl
+            .subscribe(with: self) { owner, url in
+                if let url {
+                    UIApplication.shared.open(url)
+                }
+            }
+            .disposed(by: disposeBag)
         
         output.screenshotUrlList
             .bind(to: screenshotCollectionView.rx.items(dataSource: dataSource))
@@ -190,14 +219,16 @@ final class iTunesSearchDetailViewController: UIViewController {
 
 extension iTunesSearchDetailViewController {
     static func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6),
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6),
                                                heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .fixed(4)
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous // 수평 스크롤
+        section.interGroupSpacing = 10
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
