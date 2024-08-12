@@ -80,11 +80,23 @@ final class iTunesSearchDetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        let dataSource = RxCollectionViewSectionedReloadDataSource<SectioniDetailScreenshot> { [weak self] dataSource, collectionView, indexPath, item in
+            guard let self, let cell = collectionView.dequeueReusableCell(withReuseIdentifier: iTuneDetailScreenshotCollectionViewCell.identifier, for: indexPath) as? iTuneDetailScreenshotCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.setImage(imageUrl: item)
+            
+            return cell
+        }
+        
+        output.screenshotUrlList
+            .bind(to: screenshotCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
         Observable.just(searchApp)
             .bind(to: initVC)
             .disposed(by: disposeBag)
-        
-        
     }
     
     override func viewDidLoad() {
@@ -159,8 +171,9 @@ final class iTunesSearchDetailViewController: UIViewController {
         screenshotCollectionView.snp.makeConstraints { make in
             make.top.equalTo(releaseNotesLabel.snp.bottom).offset(30)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.75)
+            make.height.equalTo(500)
         }
+        screenshotCollectionView.register(iTuneDetailScreenshotCollectionViewCell.self, forCellWithReuseIdentifier: iTuneDetailScreenshotCollectionViewCell.identifier)
         
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(screenshotCollectionView.snp.bottom).offset(30)

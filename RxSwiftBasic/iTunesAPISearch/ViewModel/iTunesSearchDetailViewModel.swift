@@ -19,9 +19,19 @@ final class iTuneSearchDetailViewModel {
     
     struct Output {
         let configureContent: PublishSubject<SearchApp>
+        let screenshotUrlList: PublishSubject<[SectioniDetailScreenshot]>
     }
     
     func transform(input: Input) -> Output {
-        return Output(configureContent: input.initVC)
+        let screenshotUrlList = PublishSubject<[SectioniDetailScreenshot]>()
+        
+        input.initVC
+            .map {
+                [SectioniDetailScreenshot(items: $0.screenshotUrls)]
+            }
+            .subscribe(screenshotUrlList)
+            .disposed(by: disposeBag)
+        
+        return Output(configureContent: input.initVC, screenshotUrlList: screenshotUrlList)
     }
 }
