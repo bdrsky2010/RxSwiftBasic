@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		7B335C082C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C072C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift */; };
 		7B335C0D2C63A2D900AD2DF7 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C0C2C63A2D900AD2DF7 /* RecommendModel.swift */; };
+		7B335C142C64AF3F00AD2DF7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C132C64AF3F00AD2DF7 /* MainTabBarController.swift */; };
+		7B335C162C64B3FA00AD2DF7 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C152C64B3FA00AD2DF7 /* EmptyViewController.swift */; };
+		7B335C182C64B40300AD2DF7 /* iTunesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C172C64B40300AD2DF7 /* iTunesSearchViewController.swift */; };
+		7B335C1A2C64BC3000AD2DF7 /* iTunesSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C192C64BC3000AD2DF7 /* iTunesSearchViewModel.swift */; };
+		7B335C202C6651D300AD2DF7 /* iTunesSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C1F2C6651D300AD2DF7 /* iTunesSearch.swift */; };
+		7B335C232C665E0600AD2DF7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B335C222C665E0600AD2DF7 /* NetworkManager.swift */; };
+		7B91C1622C679C5B0019C51F /* iTunesSearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C1612C679C5B0019C51F /* iTunesSearchCellViewModel.swift */; };
+		7B91C1642C68A1A30019C51F /* iTunesSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C1632C68A1A30019C51F /* iTunesSearchCollectionViewCell.swift */; };
+		7B91C1682C68A4450019C51F /* AppImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C1672C68A4450019C51F /* AppImageView.swift */; };
+		7B91C16A2C68B63D0019C51F /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C1692C68B63D0019C51F /* StarRatingView.swift */; };
+		7B91C16C2C68BB580019C51F /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C16B2C68BB580019C51F /* CapsuleButton.swift */; };
+		7B91C16E2C6904DD0019C51F /* iTunesSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C16D2C6904DD0019C51F /* iTunesSearchDetailViewController.swift */; };
+		7B91C1702C6907FF0019C51F /* iTunesSearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C16F2C6907FF0019C51F /* iTunesSearchDetailViewModel.swift */; };
+		7B91C1722C6992100019C51F /* iTunesDetailScreenshotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C1712C6992100019C51F /* iTunesDetailScreenshotCollectionViewCell.swift */; };
+		7B91C17A2C6A34D90019C51F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B91C1792C6A34D90019C51F /* BaseViewModel.swift */; };
 		7BB51D782C590F6A00F41271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51D772C590F6A00F41271 /* AppDelegate.swift */; };
 		7BB51D7A2C590F6A00F41271 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51D792C590F6A00F41271 /* SceneDelegate.swift */; };
 		7BB51D7C2C590F6A00F41271 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB51D7B2C590F6A00F41271 /* ViewController.swift */; };
@@ -52,6 +67,21 @@
 /* Begin PBXFileReference section */
 		7B335C072C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
 		7B335C0C2C63A2D900AD2DF7 /* RecommendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
+		7B335C132C64AF3F00AD2DF7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7B335C152C64B3FA00AD2DF7 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		7B335C172C64B40300AD2DF7 /* iTunesSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchViewController.swift; sourceTree = "<group>"; };
+		7B335C192C64BC3000AD2DF7 /* iTunesSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchViewModel.swift; sourceTree = "<group>"; };
+		7B335C1F2C6651D300AD2DF7 /* iTunesSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearch.swift; sourceTree = "<group>"; };
+		7B335C222C665E0600AD2DF7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		7B91C1612C679C5B0019C51F /* iTunesSearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchCellViewModel.swift; sourceTree = "<group>"; };
+		7B91C1632C68A1A30019C51F /* iTunesSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		7B91C1672C68A4450019C51F /* AppImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImageView.swift; sourceTree = "<group>"; };
+		7B91C1692C68B63D0019C51F /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
+		7B91C16B2C68BB580019C51F /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
+		7B91C16D2C6904DD0019C51F /* iTunesSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchDetailViewController.swift; sourceTree = "<group>"; };
+		7B91C16F2C6907FF0019C51F /* iTunesSearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchDetailViewModel.swift; sourceTree = "<group>"; };
+		7B91C1712C6992100019C51F /* iTunesDetailScreenshotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesDetailScreenshotCollectionViewCell.swift; sourceTree = "<group>"; };
+		7B91C1792C6A34D90019C51F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		7BB51D742C590F6A00F41271 /* RxSwiftBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB51D772C590F6A00F41271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BB51D792C590F6A00F41271 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +160,74 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		7B335C122C64AF2300AD2DF7 /* iTunesAPISearch */ = {
+			isa = PBXGroup;
+			children = (
+				7B335C1E2C64BC9100AD2DF7 /* Reusable */,
+				7B335C1D2C64BC8E00AD2DF7 /* Model */,
+				7B335C1C2C64BC8B00AD2DF7 /* View */,
+				7B335C1B2C64BC8800AD2DF7 /* ViewModel */,
+			);
+			path = iTunesAPISearch;
+			sourceTree = "<group>";
+		};
+		7B335C1B2C64BC8800AD2DF7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7B335C192C64BC3000AD2DF7 /* iTunesSearchViewModel.swift */,
+				7B91C1612C679C5B0019C51F /* iTunesSearchCellViewModel.swift */,
+				7B91C16F2C6907FF0019C51F /* iTunesSearchDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7B335C1C2C64BC8B00AD2DF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B335C132C64AF3F00AD2DF7 /* MainTabBarController.swift */,
+				7B335C152C64B3FA00AD2DF7 /* EmptyViewController.swift */,
+				7B335C172C64B40300AD2DF7 /* iTunesSearchViewController.swift */,
+				7B91C16D2C6904DD0019C51F /* iTunesSearchDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B335C1D2C64BC8E00AD2DF7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B335C1F2C6651D300AD2DF7 /* iTunesSearch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B335C1E2C64BC9100AD2DF7 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				7B91C1672C68A4450019C51F /* AppImageView.swift */,
+				7B91C1692C68B63D0019C51F /* StarRatingView.swift */,
+				7B91C16B2C68BB580019C51F /* CapsuleButton.swift */,
+				7B91C1632C68A1A30019C51F /* iTunesSearchCollectionViewCell.swift */,
+				7B91C1712C6992100019C51F /* iTunesDetailScreenshotCollectionViewCell.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		7B335C212C665D9F00AD2DF7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7B335C222C665E0600AD2DF7 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7B91C1782C6A34CA0019C51F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7B91C1792C6A34D90019C51F /* BaseViewModel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		7BB51D6B2C590F6A00F41271 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +247,9 @@
 		7BB51D762C590F6A00F41271 /* RxSwiftBasic */ = {
 			isa = PBXGroup;
 			children = (
+				7B91C1782C6A34CA0019C51F /* Base */,
+				7B335C212C665D9F00AD2DF7 /* Network */,
+				7B335C122C64AF2300AD2DF7 /* iTunesAPISearch */,
 				7BB51DCE2C60D43500F41271 /* ShoppingList */,
 				7BB51DB12C5BBDB400F41271 /* Threads_Start */,
 				7BB51DB02C5BBD9200F41271 /* Basic */,
@@ -323,30 +424,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BB51DE02C619BA600F41271 /* LoginViewModel.swift in Sources */,
+				7B91C17A2C6A34D90019C51F /* BaseViewModel.swift in Sources */,
 				7BB51DC02C5D1C7900F41271 /* LoginViewController.swift in Sources */,
+				7B335C142C64AF3F00AD2DF7 /* MainTabBarController.swift in Sources */,
 				7BB51DDE2C61086700F41271 /* ShoppingListTableViewCell.swift in Sources */,
 				7BB51D7C2C590F6A00F41271 /* ViewController.swift in Sources */,
 				7B335C0D2C63A2D900AD2DF7 /* RecommendModel.swift in Sources */,
 				7BB51DE42C619E9900F41271 /* PasswordViewModel.swift in Sources */,
+				7B91C1722C6992100019C51F /* iTunesDetailScreenshotCollectionViewCell.swift in Sources */,
 				7BB51DD72C60DB7400F41271 /* AddTextField.swift in Sources */,
 				7BB51DC22C5D1D4000F41271 /* UnderlineButton.swift in Sources */,
 				7BB51D9C2C5912F000F41271 /* NumbersViewController.swift in Sources */,
 				7BB51D782C590F6A00F41271 /* AppDelegate.swift in Sources */,
+				7B91C16E2C6904DD0019C51F /* iTunesSearchDetailViewController.swift in Sources */,
 				7BB51DE82C619EAC00F41271 /* BirthDayViewModel.swift in Sources */,
+				7B335C1A2C64BC3000AD2DF7 /* iTunesSearchViewModel.swift in Sources */,
 				7BB51DB62C5BD64C00F41271 /* BorderTextField.swift in Sources */,
 				7BB51DC72C5F665500F41271 /* UIViewController+.swift in Sources */,
 				7BB51DBE2C5D1C6300F41271 /* BirthDayViewController.swift in Sources */,
+				7B91C1682C68A4450019C51F /* AppImageView.swift in Sources */,
 				7BB51DA82C594E2600F41271 /* Market.swift in Sources */,
+				7B335C232C665E0600AD2DF7 /* NetworkManager.swift in Sources */,
+				7B335C182C64B40300AD2DF7 /* iTunesSearchViewController.swift in Sources */,
 				7BB51DA22C59132900F41271 /* SimplePickerExampleViewController.swift in Sources */,
 				7BB51DA02C59131800F41271 /* SimpleTableViewController.swift in Sources */,
 				7BB51DBC2C5D1C5100F41271 /* EmailViewController.swift in Sources */,
+				7B91C16C2C68BB580019C51F /* CapsuleButton.swift in Sources */,
 				7BB51DBA2C5BD69500F41271 /* FilledButton.swift in Sources */,
 				7BB51DD22C60D4E400F41271 /* ShoppingListModel.swift in Sources */,
+				7B91C1702C6907FF0019C51F /* iTunesSearchDetailViewModel.swift in Sources */,
+				7B91C1622C679C5B0019C51F /* iTunesSearchCellViewModel.swift in Sources */,
+				7B335C202C6651D300AD2DF7 /* iTunesSearch.swift in Sources */,
 				7B335C082C63A0D800AD2DF7 /* RecommendCollectionViewCell.swift in Sources */,
+				7B91C1642C68A1A30019C51F /* iTunesSearchCollectionViewCell.swift in Sources */,
+				7B91C16A2C68B63D0019C51F /* StarRatingView.swift in Sources */,
 				7BB51DD42C60D4EE00F41271 /* ShoppingListViewModel.swift in Sources */,
 				7BB51D7A2C590F6A00F41271 /* SceneDelegate.swift in Sources */,
 				7BB51DE22C619CF000F41271 /* EmailViewModel.swift in Sources */,
 				7BB51DD02C60D49A00F41271 /* ShoppingListViewController.swift in Sources */,
+				7B335C162C64B3FA00AD2DF7 /* EmptyViewController.swift in Sources */,
 				7BB51DC42C5D21CF00F41271 /* PhoneViewController.swift in Sources */,
 				7BB51DE62C619EA500F41271 /* PhoneViewModel.swift in Sources */,
 				7BB51D9E2C5912FF00F41271 /* SimpleValidationViewController.swift in Sources */,
