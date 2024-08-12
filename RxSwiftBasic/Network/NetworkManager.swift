@@ -26,7 +26,7 @@ final class NetworkManager {
     
     private init() { }
     
-    func requestAPIWithSingle<T: Decodable>(url urlString: String, of type: T.Type) -> Single<T> {
+    func requestAPIWithSingle<T: Decodable>(url urlString: String, of type: T.Type) -> Single<Result<T, NetworkError>> {
         return Single.create { single -> Disposable in
             guard let url = URL(string: urlString) else {
                 single(.failure(NetworkError.invalidURL))
@@ -35,30 +35,30 @@ final class NetworkManager {
             
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error {
-                    single(.failure(NetworkError.unknown))
+                    single(.success(.failure(NetworkError.unknown)))
                     print(error.localizedDescription)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    single(.failure(NetworkError.status))
+                    single(.success(.failure(NetworkError.status)))
                     return
                 }
                 
                 if let data {
                     do {
                         let appData = try JSONDecoder().decode(T.self, from: data)
-                        single(.success(appData))
+                        single(.success(.success(appData)))
                     } catch {
-                        single(.failure(NetworkError.decoding))
+                        single(.success(.failure(NetworkError.decoding)))
                         print(error)
                     }
                 } else {
-                    single(.failure(NetworkError.noData))
+                    single(.success(.failure(NetworkError.noData)))
                 }
             }.resume()
             
             return Disposables.create()
-        }.debug("API 요청 \(String(describing: T.self))")
+        }/*.debug("API 요청 \(String(describing: T.self))")*/
     }
 }
