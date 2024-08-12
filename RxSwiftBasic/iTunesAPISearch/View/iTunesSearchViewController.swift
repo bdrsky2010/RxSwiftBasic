@@ -11,6 +11,7 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 import SnapKit
+import Toast
 
 final class iTunesSearchViewController: UIViewController {
     private let searchController: UISearchController = {
@@ -92,9 +93,17 @@ final class iTunesSearchViewController: UIViewController {
             .bind(to: resultCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        output.requestError
+            .bind(with: self) { owner, message in
+                var toastStyle = ToastStyle()
+                toastStyle.backgroundColor = .label
+                toastStyle.messageColor = .systemBackground
+                owner.view.makeToast(message, duration: 1.5, style: toastStyle)
+            }
+            .disposed(by: disposeBag)
+        
         output.SearchDetailPush
             .bind(with: self) { owner, searchApp in
-                print("눌림")
                 owner.navigationController?.pushViewController(iTunesSearchDetailViewController(searchApp: searchApp), animated: true)
             }
             .disposed(by: disposeBag)
