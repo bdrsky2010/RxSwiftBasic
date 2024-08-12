@@ -14,10 +14,12 @@ final class iTunesSearchViewModel {
         let cancelButtonTap: PublishSubject<Void>
         let searchTextChange: PublishSubject<String>
         let searchButtonTap: PublishSubject<String>
+        let cellSelect: PublishSubject<SearchApp>
     }
     
     struct Output {
         let requestResult: PublishSubject<[SectioniTunesSearch]>
+        let SearchDetailPush: PublishSubject<SearchApp>
     }
     
     private let searchResult = PublishSubject<[SectioniTunesSearch]>()
@@ -63,7 +65,7 @@ final class iTunesSearchViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(requestResult: searchResult)
+        return Output(requestResult: searchResult, SearchDetailPush: input.cellSelect)
     }
     
     private func getiTunesAPIUrl(query: String, limit: Int) -> String {

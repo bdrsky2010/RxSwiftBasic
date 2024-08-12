@@ -39,6 +39,7 @@ final class iTunesSearchViewController: UIViewController {
         let cancelButtonTap = PublishSubject<Void>()
         let searchTextChange = PublishSubject<String>()
         let searchButtonTap = PublishSubject<String>()
+        let cellSelect = PublishSubject<SearchApp>()
         
         searchController.searchBar.rx.cancelButtonClicked
             .bind(to: cancelButtonTap)
@@ -53,9 +54,14 @@ final class iTunesSearchViewController: UIViewController {
             .bind(to: searchButtonTap)
             .disposed(by: disposeBag)
         
+        resultCollectionView.rx.modelSelected(SearchApp.self)
+            .bind(to: cellSelect)
+            .disposed(by: disposeBag)
+        
         let input = iTunesSearchViewModel.Input(cancelButtonTap: cancelButtonTap,
                                                 searchTextChange: searchTextChange,
-                                                searchButtonTap: searchButtonTap)
+                                                searchButtonTap: searchButtonTap,
+                                                cellSelect: cellSelect)
         
         let output = viewModel.transform(input: input)
         
@@ -76,6 +82,13 @@ final class iTunesSearchViewController: UIViewController {
         
         output.requestResult
             .bind(to: resultCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.SearchDetailPush
+            .bind(with: self) { owner, searchApp in
+                print("눌림")
+                owner.navigationController?.pushViewController(iTunesSearchDetailViewController(searchApp: searchApp), animated: true)
+            }
             .disposed(by: disposeBag)
     }
     
