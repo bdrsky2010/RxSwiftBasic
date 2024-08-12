@@ -9,7 +9,7 @@ import Foundation
 
 import RxSwift
 
-final class iTuneSearchDetailViewModel {
+final class iTuneSearchDetailViewModel: BaseViewModel {
     private let screenshotUrlList = PublishSubject<[SectioniDetailScreenshot]>()
     private let disposeBag = DisposeBag()
     

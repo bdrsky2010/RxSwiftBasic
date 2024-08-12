@@ -9,7 +9,7 @@ import UIKit
 
 import RxSwift
 
-final class iTunesSearchViewModel {
+final class iTunesSearchViewModel: BaseViewModel {
     struct Input {
         let cancelButtonTap: PublishSubject<Void>
         let searchTextChange: PublishSubject<String>

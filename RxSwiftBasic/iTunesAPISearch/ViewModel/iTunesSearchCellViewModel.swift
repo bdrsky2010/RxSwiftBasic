@@ -9,7 +9,7 @@ import Foundation
 
 import RxSwift
 
-final class iTunesSearchCellViewModel {
+final class iTunesSearchCellViewModel: BaseViewModel {
     struct Input {
         let disposeBag: DisposeBag
         let downloadButtonTap: Observable<String>
