@@ -37,41 +37,50 @@ final class iTunesSearchViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
         input.cancelButtonTap
             .subscribe(with: self) { owner, _ in
+                print("취소버튼 탭")
+                owner.requestQuery = ""
                 owner.searchResult.onNext([])
             }
             .disposed(by: disposeBag)
         
         input.searchTextChange
             .subscribe(with: self) { owner, text in
+                owner.requestQuery = ""
+                owner.searchResult.onNext([])
                 print("검색 텍스트 변경: \(text)")
             }
             .disposed(by: disposeBag)
         
         input.searchButtonTap
-            .distinctUntilChanged()
             .subscribe(with: self) { owner, query in
-                owner.requestQuery = query
-                owner.requestLimit = owner.firstLimit
-                
-                let url = owner.getiTunesAPIUrl(query: owner.requestQuery, limit: owner.requestLimit)
-                NetworkManager.shared.requestAPIWithSingle(url: url, of: iTunesSearch.self)
-                    .asDriver(onErrorJustReturn: .failure(.unknown))
-                    .debug("asDriver")
-                    .drive(with: self) { owner, result in
-                        switch result {
-                        case .success(let value):
-                            print("result count: \(value.resultCount)")
-                            owner.searchResult.onNext([SectioniTunesSearch(items: value.results)])
-                        case .failure(let error):
-                            print(error.message)
-                            owner.searchError.onNext(error.message)
+                if owner.requestQuery != query {
+                    owner.requestQuery = query
+                    owner.requestLimit = owner.firstLimit
+                    
+                    let url = owner.getiTunesAPIUrl(query: owner.requestQuery, limit: owner.requestLimit)
+                    NetworkManager.shared.requestAPIWithSingle(url: url, of: iTunesSearch.self)
+                        .asDriver(onErrorJustReturn: .failure(.unknown))
+                        .debug("driver")
+                        .drive(with: self) { owner, result in
+                            switch result {
+                            case .success(let value):
+                                print("result count: \(value.resultCount)")
+                                owner.searchResult.onNext([SectioniTunesSearch(items: value.results)])
+                            case .failure(let error):
+                                print(error.message)
+                                owner.searchError.onNext(error.message)
+                            }
+                        } onCompleted: { _ in
+                            print("requestAPI completed")
+                        } onDisposed: { _ in
+                            print("requestAPI disposed")
                         }
-                    } onCompleted: { _ in
-                        print("completed")
-                    } onDisposed: { _ in
-                        print("disposed")
-                    }
-                    .disposed(by: owner.disposeBag)
+                        .disposed(by: owner.disposeBag)
+                }
+            } onCompleted: { _ in
+                print("searchButtonTap completed")
+            } onDisposed: { _ in
+                print("searchButtonTap diposed")
             }
             .disposed(by: disposeBag)
         
