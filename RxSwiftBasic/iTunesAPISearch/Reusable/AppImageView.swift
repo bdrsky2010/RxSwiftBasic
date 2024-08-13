@@ -17,10 +17,17 @@ final class AppImageView: UIImageView {
         contentMode = .scaleToFill
         clipsToBounds = true
         layer.cornerRadius = cornerRadius
+        backgroundColor = .white
     }
     
     func setImage(imageUrl: String) {
-        kf.setImage(with: URL(string: imageUrl), options: [.transition(.fade(1))])
+        kf.setImage(with: URL(string: imageUrl),
+                    placeholder: UIImage(named: "noImage"),
+                    options: [.transition(.fade(1))])
+    }
+    
+    func setDefaultImage() {
+        image = UIImage(named: "noImage")
     }
     
     @available(*, unavailable)

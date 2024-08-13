@@ -113,7 +113,11 @@ final class iTunesSearchCollectionViewCell: UICollectionViewCell {
         companyLabel.text = searchApp.sellerName
         categoryLabel.text = searchApp.genres.first
         screenshotImageList.indices.forEach { i in
-            screenshotImageList[i].setImage(imageUrl: searchApp.screenshotUrls[i])
+            if i < searchApp.screenshotUrls.count {
+                screenshotImageList[i].setImage(imageUrl: searchApp.screenshotUrls[i])
+            } else {
+                screenshotImageList[i].setDefaultImage()
+            }
         }
     }
     
